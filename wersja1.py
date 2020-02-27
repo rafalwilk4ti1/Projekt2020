@@ -1,40 +1,27 @@
 import argparse
 
 
-def wewnetrzna(dane1,dane2,dane3):
-    plik = open(dane1, encoding='utf-8', mode='w')
+parser = argparse.ArgumentParser(description='opis skryptu')
+parser.add_argument("filename", help="Nazwa tworzonego pliku", type=str)
+parser.add_argument("name", help="Linia tekstu która ma zostać napisana w pliku", type=str)
+parser.add_argument("count", help="Liczba linii tekstu", type=int)
 
-    for i in range(int(dane3)):
-        plik.write(dane2+"\n")
-    plik.close()
+args = parser.parse_args()
 
-
-
-def glowna():
-    parser = argparse.ArgumentParser(description='opis skryptu')
-    parser.add_argument("filename", action="store_true", help="Nazwa tworzonego pliku")
-    parser.add_argument("name", help="Linia tekstu która ma zostać napisana w pliku", action="store_true")
-    parser.add_argument("count", help="Liczba linii tekstu", type=int)
-
-    args = parser.parse_args()
+amount = int(args.count)
+title = str(args.filename)
+content = args.name
 
 
-    ilosc = wewnetrzna(args.count)
-    nazwa = wewnetrzna(args.filename)
-    tresc = wewnetrzna(args.name)
+if title:
+    print("Great you called your file!")
+    new = open(title, encoding='utf-8', mode='w')
 
-
-    if args.count and args.filename and args.name:
-        wewnetrzna(ilosc, nazwa, tresc)
-
-glowna()
-
-
-
-
-
-
-
-
-
-
+    #inside(title=plik.txt, amount=8, content=tresc)
+    if amount:
+        print("Congratulations, you have chosen how many lines will be in your file")
+        for i in range(amount):
+        #nowy = open(title, encoding='utf-8', mode='w')
+            if content:
+                new.write(content+"\n")
+print("Fantastic, you've done")
