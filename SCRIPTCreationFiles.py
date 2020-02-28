@@ -3,9 +3,9 @@ import argparse
 
 def main():
     parser = argparse.ArgumentParser(description='opis skryptu')
-    parser.add_argument("-f","--filename", help="Nazwa tworzonego pliku", type=str, dest="filename")
-    parser.add_argument("-n","--name", help="Linia tekstu która ma zostać napisana w pliku", type=str, dest="name")
-    parser.add_argument("-c","--count", help="Liczba linii tekstu", type=int)
+    parser.add_argument("--filename", help="Nazwa tworzonego pliku", type=str, dest="filename")
+    parser.add_argument("--name", help="Linia tekstu która ma zostać napisana w pliku", type=str, dest="name")
+    parser.add_argument("--count", help="Liczba linii tekstu", type=int)
 
     args = parser.parse_args()
 
