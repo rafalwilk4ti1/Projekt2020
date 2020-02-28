@@ -13,6 +13,12 @@ def main():
     title = str(args.filename)
     content = args.name
 
+    make(amount,title,content)
+
+
+
+def make(amount,title,content):
+
 
     if title:
         print("Great you called your file!")
@@ -24,5 +30,6 @@ def main():
                     new.write(content+"\n")
 print("Fantastic, you've done")
 
-main()
 
+
+main()
