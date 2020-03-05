@@ -1,4 +1,19 @@
 import argparse
+import webbrowser
+import re
+import os
+import urllib.request
+import shutil
+
+
+
+
+
+
+
+
+def op(link):
+    webbrowser.open(link)
 
 
 
@@ -16,16 +31,34 @@ def main():
 
 
 def look_for(log, direct):
+    list = []
+    directory = os.mkdir(direct)
     with open(log, 'r') as f1:
-        with open(direct,'w') as f2:
-            for i in f1:
-                if i.find(".rpm"):
-                    f2.write(i)
-    print("Look in your new file a check it out, what I have done! ")
+        for line in f1.readlines():
+            list.append([line])
+            for i in line.split(","):
+                list[-1].append(i)
+                #print(i)
+                urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', i)
+                listToString = ' '.join([str(elem) for elem in urls])
+                print(listToString)
+                if(".rpm" in listToString):
+                    #urllib.request.urlretrieve(listToString, directory)
+                    webbrowser.open_new_tab(listToString)
+                    #shutil.move('.rpm', direct)
 
-print("Everything is correct")
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 main()
-
-
