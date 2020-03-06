@@ -20,6 +20,9 @@ def main():
 def look_for(log, direct):
     list = []
     with open(log, 'r') as f1:
+        directory = os.mkdir(direct)
+        os.chdir(direct)
+        y = os.getcwd()
         for line in f1.readlines():
             list.append([line])
             for i in line.split(","):
@@ -28,12 +31,10 @@ def look_for(log, direct):
                 urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', i)
                 listToString = ' '.join([str(elem) for elem in urls])
                 print(listToString)
-                directory = os.mkdir(direct)
-                x = os.getcwd()
-                os.chdir(direct)
-                y = os.getcwd()
                 if(".rpm" in listToString):
                     wget.download(listToString, y)
+
+
 
 
 
