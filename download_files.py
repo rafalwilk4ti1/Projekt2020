@@ -1,20 +1,7 @@
 import argparse
-import webbrowser
 import re
 import os
-import urllib.request
-import shutil
-
-
-
-
-
-
-
-
-def op(link):
-    webbrowser.open(link)
-
+import wget
 
 
 def main():
@@ -32,7 +19,6 @@ def main():
 
 def look_for(log, direct):
     list = []
-    directory = os.mkdir(direct)
     with open(log, 'r') as f1:
         for line in f1.readlines():
             list.append([line])
@@ -42,17 +28,12 @@ def look_for(log, direct):
                 urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', i)
                 listToString = ' '.join([str(elem) for elem in urls])
                 print(listToString)
+                directory = os.mkdir(direct)
+                x = os.getcwd()
+                os.chdir(direct)
+                y = os.getcwd()
                 if(".rpm" in listToString):
-                    #urllib.request.urlretrieve(listToString, directory)
-                    webbrowser.open_new_tab(listToString)
-                    #shutil.move('.rpm', direct)
-
-
-
-
-
-
-
+                    wget.download(listToString, y)
 
 
 
