@@ -22,24 +22,26 @@ def look_for(log, direct):
     with open(log, 'r') as f1:
         directory = os.mkdir(direct)
         os.chdir(direct)
-        y = os.getcwd()
+        direct = os.getcwd()
         for line in f1.readlines():
             list.append([line])
             for i in line.split(","):
                 list[-1].append(i)
-                #print(i)
-                urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', i)
-                listToString = ' '.join([str(elem) for elem in urls])
-                print(listToString)
-                if(".rpm" in listToString):
-                    wget.download(listToString, y)
+                print(i)
+                give_me_url(i, direct)
+
+
+def give_me_url(i, direct):
+    urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', i)
+    listToString  = ' '.join([str(elem) for elem in urls])
+    print(listToString)
+    download(listToString, direct)
 
 
 
-
-
-
-
+def download(listToString, direct):
+    if (".rpm" in listToString):
+        wget.download(listToString, direct)
 
 
 
