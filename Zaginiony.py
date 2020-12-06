@@ -75,7 +75,7 @@ def download(list_of_files, directory):
         for http in list_of_files:
             wget.download(http,directory)
 
-
+    active = False
 
 
 main()
