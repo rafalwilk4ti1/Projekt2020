@@ -1,0 +1,32 @@
+def zmienna(string):
+    new_list = []
+    second_lista = []
+    values = []
+    visual_string = ''
+    visual_string_2= ''
+    for x in string:
+        var = bin(ord(x)).strip('0b')
+        x = var[::-1]
+        while len(x) < 8:
+            x+='0'
+            var = x[::-1]
+        new_list.append(var)
+    for x in new_list:
+        for y in x:
+            visual_string +=y
+    print(visual_string)
+    for x in new_list:
+        for y in x:
+            if y =='0':
+                second_lista.append(y)
+            elif y =='1':
+                values.append(len(second_lista))
+                values.append('1')
+                second_lista.clear()
+    for x in values:
+        visual_string_2 += str(x)
+    string_elo = ''
+    for x in visual_string_2:
+        string_elo += x
+        string_elo += ' '
+    return string_elo
